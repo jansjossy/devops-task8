@@ -1,0 +1,26 @@
+name: CI Pipeline
+
+# Trigger: When do we run?
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_NAME: "DevOps-Task8"
+
+    steps:
+      # Step 1: Get the code from the repo
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Print some info (Demonstrating Env Vars)
+      - name: Setup Environment
+        run: |
+          echo "Starting Pipeline for $PROJECT_NAME"
+          echo "Running on branch: $GITHUB_REF"
+
+      # Step 3: Run our test script
+      - name: Run Tests
+        run: ./test_site.sh
